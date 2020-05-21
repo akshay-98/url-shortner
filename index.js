@@ -6,7 +6,7 @@ const hourSchema=require('./models/hourSchema');
 const app=express();
 app.set('view engine','ejs');
 
-const mongoURI = "mongodb://localhost/urlshortnertest101";
+const mongoURI = "mongodb://localhost/urlshortnerdb";
 const connectOptions = {
     keepAlive: true,
     reconnectTries: Number.MAX_VALUE
@@ -29,12 +29,7 @@ app.get('/',async(req,res)=>{
 app.post('/urlshorten',async(req,res)=>{
     let hourData=await hourSchema.findOne({year:new Date().getFullYear(),month:new Date().getMonth(),day:new Date().getDay(),hour:new Date().getHours()},function(err,hour){
         if(err){
-            let hdata=new hourSchema({
-                hour:Date.now().getHours()
-            });
-            hdata.save(function(err,h){
-                console.log("hour data sucessfully saved");
-            });
+            console.log("error");
         }
     });
     if(!hourData){
@@ -54,13 +49,7 @@ app.post('/urlshorten',async(req,res)=>{
     }
     let urlData=await urlSchema.findOne({url:req.body.url},function(err,url){
         if(err){
-            let url=new urlSchema({
-                url: req.body.url
-            });
-            url.save(function(err,url){
-                console.log("Sucessfully saved");
-                res.send("Your Short URL is:"+url.shortUrl);
-            });
+            console.log("error");
         }
     });
     if(!urlData){

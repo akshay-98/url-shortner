@@ -8,15 +8,23 @@
         </title>
     </head>
     <body>
+        <center>
         <h1>URL Shortner</h1>
+        </center>
+        <div class="mt-4 col-md-12">
+        <div class="container">
         <form class="form-inline" action="/urlshorten" method="POST">
             <div class="form-group">
             <input type="url" id="url" name="url" required>URL</input>
             </div>
             <div class="submit">
-            <button type="submit">submit</button>
+            <button class="btn btn-primary" type="submit">submit</button>
             </div>
         </form>
+        </div>
+        </div>
+        <div class="mt-4 col-md-12">
+        <div class="container">
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -56,6 +64,8 @@
                     <% }) %>
                 </tbody>
             </table>
+        </div>
+        </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
