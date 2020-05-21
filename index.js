@@ -88,9 +88,21 @@ app.get('/:shortUrl',async(req,res)=>{
     const shortUrl=await urlSchema.findOne({shortUrl: req.params.shortUrl});
     if(shortUrl==null){
         res.sendStatus(404);
-    }
+        res.send("Page not FOUND");
+    }else{
     res.redirect(shortUrl.url);
+    }
     
+});
+
+app.get('/graph',async(req,res)=>{
+    const graphData=hourSchema.find({year: new Date().getFullYear(),month:new Date().getMonth(),day:new Date().getDay()});
+    if(graphData==null){
+        res.send("Current Day Data not available");
+    }
+    else{
+        res.render('graph',{graphData:graphData});
+    }
 });
 
 app.listen(3000,()=>{
