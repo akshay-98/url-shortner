@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+        <title>
+            URL Shortner
+        </title>
+    </head>
+    <body>
+        <h1>URL Shortner</h1>
+        <form class="form-inline" action="/urlshorten" method="POST">
+            <div class="form-group">
+            <input type="url" id="url" name="url" required>URL</input>
+            </div>
+            <div class="submit">
+            <button type="submit">submit</button>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Url
+                        </th>
+                        <th scope="col">
+                            Short Url
+                        </th>
+                        <th scope="col">
+                            createdAt
+                        </th>
+                        <th scope="col">
+                            Visits
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% url.forEach(function(url) { %> 
+                        <tr>
+                            <td>
+                                <a href="<%= url.url %>""><%=url.url %></a>
+                                
+                            </td>
+                            <td>
+                                <a href="<%= url.shortUrl %>""><%=url.shortUrl %></a>
+                                
+                            </td>
+                            <td>
+                                <%= url.createdAt %>
+                            </td>
+                            <td>
+                                <%= url.visits %>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
